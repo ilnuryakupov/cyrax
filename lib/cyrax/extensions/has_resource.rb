@@ -85,11 +85,11 @@ module Cyrax::Extensions
 
       def filter_attributes(attributes)
         if Cyrax.strong_parameters
-          attributes.permit(self.class.accessible_attributes)
+          attributes.permit(self.class.accessible_attributes).to_h
         elsif self.class.accessible_attributes.blank?
-          attributes
+          attributes.to_h
         else
-          attributes.slice(*self.class.accessible_attributes)
+          attributes.slice(*self.class.accessible_attributes).to_h
         end
       end
   end
